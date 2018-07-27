@@ -14,17 +14,7 @@ class ReplyController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Reply::latest()->get();
     }
 
     /**
@@ -35,7 +25,9 @@ class ReplyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Reply::create($request->all());
+
+        return response('Created!', 200);
     }
 
     /**
@@ -46,19 +38,9 @@ class ReplyController extends Controller
      */
     public function show(Reply $reply)
     {
-        //
+        return $reply;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Reply  $reply
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Reply $reply)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +51,9 @@ class ReplyController extends Controller
      */
     public function update(Request $request, Reply $reply)
     {
-        //
+        $reply->update($request->all());
+
+        return response('Updated!', 204);
     }
 
     /**
@@ -80,6 +64,8 @@ class ReplyController extends Controller
      */
     public function destroy(Reply $reply)
     {
-        //
+        $reply->delete();
+
+        return response('Deleted!', 204);
     }
 }
