@@ -13,10 +13,11 @@ class Question extends Model
         'title', 'slug', 'body', 'category_id', 'user_id'
     ];
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // use to change the route model binding key from default id
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 
     public function user()
     {
