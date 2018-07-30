@@ -22,6 +22,7 @@
               type="submit"
             >Login
             </v-btn>
+            <v-btn flat to="/signup">Sign up</v-btn>
           </v-form>
         </v-container>
       </v-card>
