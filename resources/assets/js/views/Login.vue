@@ -4,7 +4,7 @@
     <v-flex>
       <v-card>
         <v-container>
-          <v-form v-model="valid">
+          <v-form @submit.prevent="login()">
             <v-text-field
               v-model="form.email"
               label="E-mail"
@@ -31,14 +31,27 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data: () => ({
-    valid: false,
     form: {
       email: null,
       password: null
     }
-  })
+  }),
+  methods: {
+    login () {
+      axios
+        .post('/api/auth/login', this.form)
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.error(error)
+        })
+    }
+  }
 }
 </script>
 
