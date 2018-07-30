@@ -31,8 +31,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   data: () => ({
     form: {
@@ -42,14 +40,7 @@ export default {
   }),
   methods: {
     login () {
-      axios
-        .post('/api/auth/login', this.form)
-        .then(response => {
-          console.log(response)
-        })
-        .catch(error => {
-          console.error(error)
-        })
+      User.login(this.form)
     }
   }
 }
