@@ -2,7 +2,7 @@ window.Vue = require('vue');
 
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import router from './router/router'
+import router from './router/index'
 // import './plugins/vuetify'
 
 Vue.use(Vuetify)
