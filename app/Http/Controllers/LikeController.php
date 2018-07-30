@@ -34,7 +34,7 @@ class LikeController extends Controller
      */
     public function unLikeIt(Reply $reply)
     {
-        $reply->likes()->where([ 'user_id' => '1' ])->first()->delete();
+        $reply->likes()->where('user_id', '1')->first()->delete();
 
         return response('Unliked!', 204);
     }
