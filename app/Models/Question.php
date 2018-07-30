@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use App\User;
 use App\Models\Reply;
 use App\Models\Category;
 
