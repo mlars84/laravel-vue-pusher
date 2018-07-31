@@ -59,6 +59,11 @@ export default {
       password_confirmation: null
     }
   }),
+  created () {
+    if (User.loggedIn()) {
+      this.$router.push('forum')
+    }
+  },
   methods: {
     signup () {
       AppStorage.clear()

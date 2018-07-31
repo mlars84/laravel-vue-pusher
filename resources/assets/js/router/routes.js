@@ -3,6 +3,7 @@ import Signup from '../views/Signup'
 import Forum from '../views/Forum'
 import Question from '../views/Question'
 import Category from '../views/Category'
+import Logout from '../views/Logout'
 
 export default [
   { 
@@ -24,5 +25,9 @@ export default [
   { 
     path: '/category',
     component: Category
+  },
+  {
+    path: '/logout',
+    component: Logout
   }
 ]

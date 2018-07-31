@@ -39,10 +39,14 @@ export default {
       password: null
     }
   }),
+  created () {
+    if (User.loggedIn()) {
+      this.$router.push('forum')
+    }
+  },
   methods: {
     login () {
       User.login(this.form)
-      this.$router.push('forum')
     }
   }
 }

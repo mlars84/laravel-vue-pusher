@@ -10,6 +10,8 @@ Vue.use(Vuetify)
 import User from './models/User'
 window.User = User
 
+window.EventBus = new Vue()
+
 Vue.component('App', require('./App.vue'))
 
 const app = new Vue({
