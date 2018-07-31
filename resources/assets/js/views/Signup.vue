@@ -66,6 +66,7 @@ export default {
         .post('/api/auth/signup', this.form)
         .then(response => {
           User.responseAfterLogin(response)
+          this.$router.push('forum')
         })
         .catch(error => {
           console.log(error)

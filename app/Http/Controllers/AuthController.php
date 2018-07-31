@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\SignupRequest;
+use Illuminate\Http\Request;
 use App\User;
+use App\Http\Requests\SignupRequest;
 
 class AuthController extends Controller
 {
@@ -16,7 +15,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('jwt', ['except' => ['login']]);
+        $this->middleware('JWT', ['except' => ['login','signup']]);
     }
 
     /**
@@ -40,7 +39,6 @@ class AuthController extends Controller
         User::create($request->all());
         return $this->login($request);
     }
-
     /**
      * Get the authenticated User.
      *
@@ -88,10 +86,5 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => auth()->user()->name
         ]);
-    }
-
-    public function payload()
-    {
-        return auth()->payload();
     }
 }

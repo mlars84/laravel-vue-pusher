@@ -6,6 +6,7 @@ class User {
     axios
       .post('/api/auth/login', credentials)
       .then(response => {
+        console.log(response)
         this.responseAfterLogin(response)
       })
       .catch(error => console.error(error.response.data))
