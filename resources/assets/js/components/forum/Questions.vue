@@ -13,6 +13,8 @@
     <v-card-text>
       {{ question.body }}
     </v-card-text>
+    <v-spacer></v-spacer>
+    <!-- <v-btn flat><v-icon>close</v-icon></v-btn> -->
   </v-card>
 </template>
 

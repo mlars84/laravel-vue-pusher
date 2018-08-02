@@ -72187,7 +72187,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -72198,6 +72198,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -72264,7 +72266,11 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("v-card-text", [_vm._v("\n    " + _vm._s(_vm.question.body) + "\n  ")])
+      _c("v-card-text", [
+        _vm._v("\n    " + _vm._s(_vm.question.body) + "\n  ")
+      ]),
+      _vm._v(" "),
+      _c("v-spacer")
     ],
     1
   )
@@ -72510,7 +72516,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -72521,6 +72527,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_marked__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_marked___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_marked__);
 //
 //
 //
@@ -72540,6 +72548,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ShowQuestion',
@@ -72551,6 +72562,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {};
+  },
+  computed: {
+    body: function body() {
+      if (this.question.body) {
+        return __WEBPACK_IMPORTED_MODULE_0_marked___default.a.parse(this.question.body);
+      }
+    }
   }
 });
 
@@ -72601,7 +72619,9 @@ var render = function() {
                   ])
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _c("v-card-text", { domProps: { innerHTML: _vm._s(_vm.body) } })
             ],
             1
           )
@@ -72787,13 +72807,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     ask: function ask() {
+      var _this2 = this;
+
       axios.post('api/question', {
         title: this.question.title,
         body: this.question.body,
         category_id: this.question.category_id,
         user_id: User.id()
       }).then(function (response) {
-        return console.log(response);
+        _this2.$router.push(response.data.path);
       }).catch(function (error) {
         return console.error(error);
       });

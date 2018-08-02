@@ -65,7 +65,9 @@ export default {
           category_id: this.question.category_id,
           user_id: User.id()
         })
-        .then(response => console.log(response))
+        .then(response => {
+          this.$router.push(response.data.path)
+        })
         .catch(error => console.error(error))
     }
   }
