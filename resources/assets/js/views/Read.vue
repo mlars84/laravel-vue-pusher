@@ -1,6 +1,7 @@
 <template>
-  <v-container>
-    <v-list two-line>
+<show-question :question="question" />
+  <!-- <v-container> -->
+    <!-- <v-list two-line>
       <template>
         <v-subheader>
           {{ question.user }} said {{ question.created_at }}.
@@ -13,13 +14,16 @@
           </v-list-tile-content>
         </v-list-tile>
       </template>
-    </v-list>
-  </v-container>
+    </v-list> -->
+  <!-- </v-container> -->
 </template>
 
 <script>
+import ShowQuestion from '../components/forum/ShowQuestion'
+
 export default {
   name: 'Read',
+  components: { ShowQuestion },
   data: () => ({
     question: {}
   }),

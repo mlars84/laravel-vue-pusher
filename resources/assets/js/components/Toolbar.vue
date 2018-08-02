@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar color="accent">
+  <v-toolbar>
     <v-toolbar-title>Real Time Forum</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
