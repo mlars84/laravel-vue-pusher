@@ -1,7 +1,7 @@
 import Login from '../views/Login'
 import Signup from '../views/Signup'
 import Forum from '../views/Forum'
-import Question from '../views/Question'
+import AskQuestion from '../views/AskQuestion'
 import Category from '../views/Category'
 import Logout from '../views/Logout'
 import Read from '../views/Read'
@@ -23,9 +23,9 @@ export default [
     component: Forum
   },
   { 
-    path: '/question',
-    name: 'Question',
-    component: Question
+    path: '/ask-question',
+    name: 'AskQuestion',
+    component: AskQuestion
   },
   { 
     path: '/category',
