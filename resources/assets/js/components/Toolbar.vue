@@ -11,10 +11,6 @@
         v-if="item.show"
       >{{ item.title }}
       </v-btn>
-    <!-- <v-btn flat to="/login">Login</v-btn>
-    <v-btn flat to="/question">Question</v-btn>
-    <v-btn flat to="/category">Category</v-btn>
-    <v-btn flat to="/forum">Forum</v-btn> -->
     </v-toolbar-items>
   </v-toolbar>
 </template>

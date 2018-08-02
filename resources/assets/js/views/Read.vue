@@ -1,21 +1,5 @@
 <template>
-<show-question :question="question" />
-  <!-- <v-container> -->
-    <!-- <v-list two-line>
-      <template>
-        <v-subheader>
-          {{ question.user }} said {{ question.created_at }}.
-        </v-subheader>
-        <v-divider></v-divider>
-        <v-list-tile>
-          <v-list-tile-content>
-            <v-list-tile-title v-html="question.title"></v-list-tile-title>
-            <v-list-tile-sub-title v-html="question.body"></v-list-tile-sub-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </template>
-    </v-list> -->
-  <!-- </v-container> -->
+  <show-question :question="question" />
 </template>
 
 <script>
