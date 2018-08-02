@@ -51,6 +51,10 @@ class User {
       return payload.sub
     }
   }
+
+  own (user_id) {
+    return this.id() == user_id 
+  }
 }
 
 export default User = new User() 

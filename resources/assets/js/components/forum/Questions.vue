@@ -14,7 +14,9 @@
       {{ question.body }}
     </v-card-text>
     <v-spacer></v-spacer>
-    <!-- <v-btn flat><v-icon>close</v-icon></v-btn> -->
+    <v-btn icon small @click="deleteQuestion">
+      <v-icon color="red">close</v-icon>
+    </v-btn>
   </v-card>
 </template>
 
@@ -25,6 +27,17 @@ export default {
     question: {
       required: true,
       type: Object
+    }
+  },
+  data: () => ({}),
+  methods: {
+    deleteQuestion () {
+      axios 
+        .delete(`/api/question/${this.question.slug}`)
+        .then(response => {
+          location.reload()
+        })
+        .catch(error => console.error(error))
     }
   }
 }
