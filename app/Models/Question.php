@@ -4,20 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-use App\Models\Reply;
-use App\Models\Category;
 
 class Question extends Model
 {
-    protected $fillable = [
-        'title', 'slug', 'body', 'category_id', 'user_id'
-    ];
+    protected static function boot()
+    {
+        parent::boot();
 
-    // use to change the route model binding key from default id
-    // public function getRouteKeyName()
-    // {
-    //     return 'slug';
-    // }
+        static::creating(function ($question) {
+            $question->slug = str_slug($question->title);
+        });
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    // protected $guarded = [];
+
+    protected $fillable = ['title','slug','body','user_id','category_id'];
+
+    protected $with = ['replies'];
 
     public function user()
     {
@@ -26,9 +34,9 @@ class Question extends Model
 
     public function replies()
     {
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class)->latest();
     }
-   
+    
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -36,6 +44,6 @@ class Question extends Model
 
     public function getPathAttribute()
     {
-        return asset("api/question/$this->slug");
+        return "/question/$this->slug";
     }
 }

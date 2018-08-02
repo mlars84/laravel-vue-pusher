@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 use App\Models\Category;
-use App\Models\User;
+use App\User;
 
 $factory->define(App\Models\Question::class, function (Faker $faker) {
     $title = $faker->sentence;

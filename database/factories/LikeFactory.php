@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Models\User;
+use App\User;
 
 $factory->define(App\Models\Like::class, function (Faker $faker) {
     return [

@@ -2,7 +2,11 @@
   <v-container fluid grid-list-md>
     <v-layout row wrap>
       <v-flex xs8>
-        <question />
+        <questions 
+          v-for="(question, index) in questions"
+          :key="index"
+          :question="question"
+        />
       </v-flex>
       sidebar  
     </v-layout>
@@ -10,14 +14,22 @@
 </template>
 
 <script>
-import Question from '../components/forum/Question'
+import Questions from '../components/forum/Questions'
 
 export default {
   name: 'Forum',
   components: {
-    Question
+    Questions
   },
-  data: () => ({})
+  data: () => ({
+    questions: {}
+  }),
+  created () {
+    axios
+      .get('/api/question')
+      .then(response => this.questions = response.data.data)
+      .catch(error => console.error(error))
+  }
 }
 </script>
 

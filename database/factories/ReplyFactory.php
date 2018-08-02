@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 use App\Models\Question;
-use App\Models\User;
+use App\User;
 
 $factory->define(App\Models\Reply::class, function (Faker $faker) {
     return [
