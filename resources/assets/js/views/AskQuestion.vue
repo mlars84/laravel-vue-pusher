@@ -11,12 +11,6 @@
                 type="text"
                 required
               ></v-text-field>
-              <v-text-field
-                v-model="question.body"
-                label="Body"
-                type="text"
-                required
-              ></v-text-field>
               <v-select
                 v-model="question.category_id"
                 :items="categories"
@@ -25,6 +19,10 @@
                 label="Category"
               >
               </v-select>
+              <markdown-editor
+                v-model="question.body"
+              >
+              </markdown-editor>
               <v-btn
                 color="success"
                 type="submit"
@@ -39,8 +37,11 @@
 </template>
 
 <script>
+import markdownEditor from 'vue-simplemde/src/markdown-editor'
+
 export default {
   name: 'AskQuestion',
+  components: { markdownEditor },
   data: () => ({
     question: {
       title: null,
@@ -72,5 +73,5 @@ export default {
 </script>
 
 <style>
-
+@import '~simplemde/dist/simplemde.min.css';
 </style>
