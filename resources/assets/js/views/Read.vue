@@ -11,22 +11,30 @@
       v-if="!editMode"
     />
 
-    <replies
-      v-if="question.reply_count > 0" 
-      :replies="question.replies"
-      :questionSlug="question.slug"
-    />
+    <v-container>
+       <replies
+        v-if="question.reply_count > 0" 
+        :replies="question.replies"
+        :questionSlug="question.slug"
+      />
+
+      <new-reply 
+        class="mt-4"
+        :questionSlug="question.slug"
+      />
+    </v-container>
   </div>
 </template>
 
 <script>
 import ShowQuestion from '../components/forum/ShowQuestion'
 import EditQuestion from '../components/forum/EditQuestion'
-import Replies from '../components/Replies/Replies'
+import Replies from '../components/reply/Replies'
+import NewReply from '../components/reply/NewReply'
 
 export default {
   name: 'Read',
-  components: { ShowQuestion, EditQuestion, Replies },
+  components: { ShowQuestion, EditQuestion, Replies, NewReply },
   data: () => ({
     question: null,
     editMode: false

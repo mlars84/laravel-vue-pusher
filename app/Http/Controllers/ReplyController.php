@@ -31,7 +31,7 @@ class ReplyController extends Controller
         $reply = $question->replies()->create($request->all());
 
         $user = $question->user;
-        $user->notify(new NewReplyNotification($reply));
+        // $user->notify(new NewReplyNotification($reply));
 
         return response(['reply' => new ReplyResource($reply)], 200);
     }

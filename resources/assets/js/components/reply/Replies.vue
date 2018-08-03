@@ -1,13 +1,13 @@
 <template>
-  <v-container>
+  <div>
     <reply 
       v-if="replies"
-      v-for="(reply, index) in replies" 
+      v-for="(reply, index) in content" 
       :key="index"
       :reply="reply"
       :questionSlug="questionSlug"
     />
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -25,6 +25,16 @@ export default {
       required: true,
       type: String
     }
+  },
+  data () {
+    return {
+      content: this.replies
+    }
+  },
+  created () {
+    EventBus.$on('newReply', ($reply) => {
+      this.content.unshift($reply)
+    })
   }
 } 
 </script>

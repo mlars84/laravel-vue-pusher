@@ -1,5 +1,5 @@
 <template>
-  <v-card v-if="own">
+  <v-card class="mt-4">
     <v-card-title>
       <div class="headline">{{ reply.user }}</div>
       <div class="ml-2 grey--text">said {{ reply.created_at }}</div>
@@ -7,7 +7,7 @@
     <v-divider></v-divider>
     <v-card-text>{{ reply.reply }}</v-card-text>
     <v-divider></v-divider>
-    <v-card-actions>
+    <v-card-actions  v-if="own">
       <v-btn
         icon small
         @click="edit"
