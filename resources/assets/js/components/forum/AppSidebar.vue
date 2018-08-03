@@ -10,6 +10,13 @@
             <v-list-tile-title>{{ category.name }}</v-list-tile-title>
           </router-link>
         </v-list-tile-content>
+        <v-spacer></v-spacer>
+        <v-btn
+          icon small
+          @click="deleteCategory(category.slug)"
+        >
+        <v-icon>close</v-icon>
+        </v-btn>
       </v-list-tile>
     </v-list>
   </v-card>
@@ -26,6 +33,14 @@ export default {
       .get('api/category')
       .then(response => this.categories = response.data.data)
       .catch(error => console.error(error))
+  },
+  methods: {
+    deleteCategory (slug) {
+      axios
+        .delete(`/api/category/${slug}`)
+        .then(res => location.reload())
+        .catch(err =>console.error(err))
+    }
   }
 }
 </script>

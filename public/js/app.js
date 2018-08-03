@@ -91979,7 +91979,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -92010,22 +92010,109 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Category',
   data: function data() {
     return {
-      categoryName: null
+      categoryName: null,
+      categories: {},
+      editSlug: null
     };
   },
+  created: function created() {
+    this.getCategories();
+  },
+
   methods: {
-    create: function create() {
+    getCategories: function getCategories() {
       var _this = this;
+
+      axios.get('api/category').then(function (response) {
+        return _this.categories = response.data.data;
+      }).catch(function (error) {
+        return console.error(error);
+      });
+    },
+    submit: function submit() {
+      this.editSlug ? this.update() : this.create();
+    },
+    create: function create() {
+      var _this2 = this;
 
       axios.post('/api/category', {
         name: this.categoryName
       }).then(function (res) {
-        return _this.$router.push('/forum');
+        return _this2.getCategories();
+      }).catch(function (err) {
+        return console.error(err);
+      });
+    },
+    update: function update() {
+      var _this3 = this;
+
+      axios.put('/api/category/' + this.editSlug, {
+        name: this.categoryName
+      }).then(function (res) {
+        _this3.getCategories();
+        _this3.categories = res.data.data;
+      }).catch(function (err) {
+        return console.error(err);
+      });
+    },
+    edit: function edit(index) {
+      this.categoryName = this.categories[index].name;
+      this.editSlug = this.categories[index].slug;
+    },
+    remove: function remove(slug) {
+      var _this4 = this;
+
+      axios.delete('/api/category/' + slug).then(function (res) {
+        _this4.getCategories();
+        _this4.categories = res.data.data;
       }).catch(function (err) {
         return console.error(err);
       });
@@ -92050,7 +92137,7 @@ var render = function() {
           on: {
             submit: function($event) {
               $event.preventDefault()
-              _vm.create()
+              _vm.submit()
             }
           }
         },
@@ -92066,13 +92153,128 @@ var render = function() {
             }
           }),
           _vm._v(" "),
+          _vm.editSlug
+            ? _c(
+                "v-btn",
+                {
+                  attrs: {
+                    icon: "",
+                    small: "",
+                    color: "warning",
+                    type: "submit"
+                  }
+                },
+                [_c("v-icon", [_vm._v("save")])],
+                1
+              )
+            : _c(
+                "v-btn",
+                {
+                  attrs: {
+                    icon: "",
+                    small: "",
+                    color: "success",
+                    type: "submit"
+                  }
+                },
+                [_c("v-icon", [_vm._v("add")])],
+                1
+              )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-card",
+        { staticClass: "mt-4" },
+        [
           _c(
-            "v-btn",
-            {
-              attrs: { icon: "", small: "", color: "success", type: "submit" }
-            },
-            [_c("v-icon", [_vm._v("add")])],
+            "v-toolbar",
+            { attrs: { color: "info", dark: "" } },
+            [_c("v-toolbar-title", [_vm._v("Categories")])],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list",
+            _vm._l(_vm.categories, function(category, index) {
+              return _c(
+                "div",
+                { key: index },
+                [
+                  _c(
+                    "v-list-tile",
+                    [
+                      _c(
+                        "v-list-tile-action",
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { icon: "", small: "" },
+                              on: {
+                                click: function($event) {
+                                  _vm.edit(index)
+                                }
+                              }
+                            },
+                            [
+                              _c("v-icon", { attrs: { color: "warning1" } }, [
+                                _vm._v("edit")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-tile-content",
+                        [
+                          _c("v-list-tile-title", [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(category.name) +
+                                "\n            "
+                            )
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-tile-action",
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { icon: "", small: "" },
+                              on: {
+                                click: function($event) {
+                                  _vm.remove(category.slug)
+                                }
+                              }
+                            },
+                            [
+                              _c("v-icon", { attrs: { color: "red" } }, [
+                                _vm._v("delete")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-divider")
+                ],
+                1
+              )
+            })
           )
         ],
         1
@@ -93659,7 +93861,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -93670,6 +93872,13 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -93703,6 +93912,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }).catch(function (error) {
       return console.error(error);
     });
+  },
+
+  methods: {
+    deleteCategory: function deleteCategory(slug) {
+      axios.delete('/api/category/' + slug).then(function (res) {
+        return location.reload();
+      }).catch(function (err) {
+        return console.error(err);
+      });
+    }
   }
 });
 
@@ -93748,6 +93967,22 @@ var render = function() {
                     1
                   )
                 ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { icon: "", small: "" },
+                  on: {
+                    click: function($event) {
+                      _vm.deleteCategory(category.slug)
+                    }
+                  }
+                },
+                [_c("v-icon", [_vm._v("close")])],
                 1
               )
             ],
