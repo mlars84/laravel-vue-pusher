@@ -1,10 +1,13 @@
 <template>
-  <div>
-    <edit-question v-if="editMode" :question="question" />
+  <div v-if="question">
+    <edit-question 
+      v-if="editMode" 
+      :question="question" 
+    />
     <show-question 
-    :question="question" 
-    v-if="question && !editMode"
-  />
+      :question="question" 
+      v-if="!editMode"
+    />
   </div>
 </template>
 
@@ -20,14 +23,25 @@ export default {
     editMode: false
   }),
   created () {
-    axios
-      .get(`/api/question/${this.$route.params.slug}`)
-      .then(response => this.question = response.data.data)
-      .catch(error => console.error(error))
-    
-    EventBus.$on('startEditing', () => {
-      this.editMode = true
-    })
+    this.listen()
+    this.getQuestion()
+  },
+  methods: {
+    getQuestion () {
+      axios
+        .get(`/api/question/${this.$route.params.slug}`)
+        .then(response => this.question = response.data.data)
+        .catch(error => console.error(error))
+    },
+    listen () {
+      EventBus.$on('startEditing', () => {
+        this.editMode = true
+      })
+
+      EventBus.$on('stopEditing', () => {
+        this.editMode = false
+      })
+    }
   }
 }
 </script>
