@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Model\Category;
 use Illuminate\Http\Request;
 use App\Http\Resources\CategoryResource;
 
@@ -53,7 +53,7 @@ class CategoryController extends Controller
     {
         $category->update($request->all());
 
-        return response('Updated!', 204);
+        return response(new CategoryResource($category), 204);
     }
 
     /**
@@ -66,6 +66,6 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return response('Deleted!', 204);
+        return response(null, 204);
     }
 }

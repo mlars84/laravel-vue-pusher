@@ -2,7 +2,7 @@
   <v-container fluid grid-list-md>
     <v-layout row wrap>
       <v-flex xs8>
-        <questions 
+        <question
           v-for="(question, index) in questions"
           :key="index"
           :question="question"
@@ -16,13 +16,13 @@
 </template>
 
 <script>
-import Questions from '../components/forum/Questions'
+import Question from '../components/forum/Question'
 import AppSidebar from '../components/forum/AppSidebar'
 
 export default {
   name: 'Forum',
   components: {
-    Questions,
+    Question,
     AppSidebar
   },
   data: () => ({

@@ -1,10 +1,9 @@
+
 <?php
-
 use Faker\Generator as Faker;
-use App\Models\Category;
-use App\User;
+use App\Model\Category;
 
-$factory->define(App\Models\Question::class, function (Faker $faker) {
+$factory->define(App\Model\Question::class, function (Faker $faker) {
     $title = $faker->sentence;
     return [
         'title' => $title,
@@ -14,7 +13,8 @@ $factory->define(App\Models\Question::class, function (Faker $faker) {
             return Category::all()->random();
         },
         'user_id' => function () {
-            return User::all()->random();
+            return \App\User::all()->random();
         }
+        
     ];
 });

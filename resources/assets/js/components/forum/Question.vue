@@ -10,8 +10,7 @@
         <div class="grey--text">{{ question.user }}  said {{ question.created_at }}.</div>
       </div>
     </v-card-title>
-    <v-card-text>
-      {{ question.body }}
+    <v-card-text v-html="parsedBody">
     </v-card-text>
     <v-spacer></v-spacer>
     <v-btn icon small @click="deleteQuestion">
@@ -21,6 +20,8 @@
 </template>
 
 <script>
+import md from 'marked'
+
 export default {
   name: 'Questions',
   props: {
@@ -29,7 +30,12 @@ export default {
       type: Object
     }
   },
-  data: () => ({}),
+  data: () => ({
+    parsedBody: null
+  }),
+  created () {
+    this.parsedBody = md.parse(this.question.body)
+  },
   methods: {
     deleteQuestion () {
       axios 

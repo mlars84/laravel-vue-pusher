@@ -87,7 +87,10 @@ export default {
         .post('/api/category', {
           name: this.categoryName
         })
-        .then(res => this.getCategories())
+        .then(res => {
+          this.getCategories()
+          this.categoryName = null
+        })
         .catch(err => console.error(err))
     },
     update () {
@@ -98,12 +101,15 @@ export default {
         .then(res => {
           this.getCategories()
           this.categories = res.data.data
+          this.editSlug = null
+          this.categoryName = null
         })
         .catch(err => console.error(err))
     },
     edit (index) {
       this.categoryName = this.categories[index].name
       this.editSlug = this.categories[index].slug
+      this.categories.splice(index, 1)
     },
     remove (slug) {
       axios

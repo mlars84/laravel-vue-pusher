@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reply;
+use App\Model\Reply;
 use Illuminate\Http\Request;
-use App\Models\Question;
+use App\Model\Question;
 use App\Http\Resources\ReplyResource;
+use App\Notifications\NewReplyNotification;
 
 class ReplyController extends Controller
 {
@@ -29,12 +30,15 @@ class ReplyController extends Controller
     {
         $reply = $question->replies()->create($request->all());
 
+        $user = $question->user;
+        $user->notify(new NewReplyNotification($reply));
+
         return response(['reply' => new ReplyResource($reply)], 200);
     }
  
     /**
      * Display the specified resource.
-     * 
+     *
      * @param  \App\Models\Reply  $reply
      * @return \Illuminate\Http\Response
      */
