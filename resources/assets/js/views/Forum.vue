@@ -8,18 +8,22 @@
           :question="question"
         />
       </v-flex>
-      sidebar  
+      <v-flex xs4>
+        <app-sidebar /> 
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
 import Questions from '../components/forum/Questions'
+import AppSidebar from '../components/forum/AppSidebar'
 
 export default {
   name: 'Forum',
   components: {
-    Questions
+    Questions,
+    AppSidebar
   },
   data: () => ({
     questions: {}
